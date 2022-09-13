@@ -98,6 +98,7 @@ all_avalanche_times = [item[0] for item in all_avalanches]
 all_avalanche_sizes= [item[1] for item in all_avalanches]
 all_avalanche_durations = [event1 - event0 for event0, event1 in zip(all_avalanche_times[:-1], all_avalanche_times[1:])]
 
+print('show 1/T^α dependence')
 log_bins = np.logspace(np.log10(2), np.log10(np.max(all_avalanche_durations)), 50) # logarithmic bins for histogram
 vals, bins = np.histogram(all_avalanche_durations, bins=log_bins)
 plt.figure()
