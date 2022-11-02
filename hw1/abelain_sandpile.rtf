@@ -1,0 +1,21 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww14800\viewh9980\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Here is my solution to the Abelian sandpile problem.  Essentially, we have a lattice of N by N and we drop a grain of sand at a random location.  Once a stack of grains is taller than 3 grains, the pile falls and distributes is grains to its neighbors north, south, east and west.  Below I discuss the runtime of the script.\
+\
+Here is the link to the original problem:\
+https://github.com/williamgilpin/cphy/blob/main/hw/cellular_automata_complexity.ipynb\
+\
+If a single image of the sandpile has size N (the total number of lattice sites), what do you expect to be the worst-case scaling of the runtime of your algorithm?  What about the expected scaling of memory usage?\
+\
+So to drop a single sand particle, we need to first define a sqrt(N) by sqrt(N) matrix of zeros with one random entry of 1.  We then need to add the original matrix to the matrix of the random drop. Then we need to check for toppling events.  To do so, we need to find the max of the matrix and check if its less than 4.  If not, we find all locations where A[i,j] >= 4 and complete relatively simple calculations.  Repeat this process until all piles are less than 4...\
+\
+So what this means for runtime: to find the max and to find where A[i,j] >= 4 both cost N because we need to touch each element of the matrix.  This picks up an order of N runtime.  Then the computations after (decreasing pile by 4 and redistributing gains) are just order 1.  So, to run one step() is just order N.\
+\
+To then simulate step() M times, is of order M*N... therefore, this script has runtime of M*N where N is the number of elements in our matrix and M is the number of times we simulate a step() call.}
